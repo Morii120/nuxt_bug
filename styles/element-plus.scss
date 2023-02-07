@@ -1,0 +1,202 @@
+@use 'element-plus/dist/index.css';
+
+:root {
+  --el-color-primary: #2256F6;
+  --el-color-primary-light-1: #3665f4;
+  --el-color-primary-light-2: #4973f3;
+  --el-color-primary-light-3: #5d81f1;
+  --el-color-primary-light-4: #7090f0;
+  --el-color-primary-light-5: #849eee;
+  --el-color-primary-light-6: #97abeb;
+  --el-color-primary-light-7: #abbbeb;
+  --el-color-primary-light-8: #bec8e8;
+  --el-color-primary-light-9: #d1d8e8;
+  --el-color-black:#333333;
+}
+.el-input{
+  --el-input-hover-border:var(--el-color-primary);
+}
+.el-select{
+  --el-select-close-hover-color: var(--el-color-primary);
+  --el-select-border-color-hover:var(--el-color-primary);
+}
+a {
+  font-weight: 400;
+  color: var(--el-color-black);
+}
+.el-backtop{
+  width: 60px;
+  height: 60px;
+}
+.el-popover.el-popper{
+  min-width: 110px;
+}
+.el-dialog {
+  display: flex;
+  flex-direction: column;
+  margin:0 !important;
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  /*height:600px;*/
+  max-height:calc(100% - 200px);
+  max-width:calc(100% - 30px);
+  border-radius: 5px;
+}
+.el-popup-parent--hidden{
+  padding-right: 0 !important;
+}
+.el-dialog .el-dialog__body {
+  flex:1;
+  overflow: auto;
+}
+.prefix_select_input{
+  padding: 0px !important;;
+  width: 100%;
+  .el-input {
+    .el-input__prefix{
+      left: 1px;
+    }
+  }
+  .el-input--default.el-input--prefix{
+    &>.el-input__inner{
+      padding-left: 100px;
+    }
+    .el-select{
+      .el-input__inner{
+        position: relative;
+        top: 1px;
+        padding-left: 10px;
+        padding-right: 0px;
+        height: 30px;
+        border: none;
+        box-shadow: none !important;
+      }
+      .el-input__suffix{
+        top: 1px;
+        right: 0px;
+      }
+    }
+    .select_border{
+      position: relative;
+      &::after{
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: -4px;
+        transform: translateY(-50%);
+        width: 1px;
+        height: 14px;
+        background: #D9D9D9;
+
+      }
+    }
+  }
+  .el-input--large.el-input--prefix{
+    &>.el-input__inner{
+      padding-left: 90px;
+    }
+    .el-select{
+      .el-input__inner{
+        position: relative;
+        top: 2px;
+        padding-left: 10px;
+        padding-right: 0px;
+        height: 36px;
+        border: none;
+        box-shadow: none !important;
+      }
+      .el-input__suffix{
+        top: 1px;
+        right: 0px;
+      }
+
+    }
+    .select_border{
+      position: relative;
+      &::after{
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: -4px;
+        transform: translateY(-50%);
+        width: 1px;
+        height: 14px;
+        background: #D9D9D9;
+
+      }
+    }
+    .el-popper{
+      padding: 0;
+    }
+  }
+  .pop_holder {
+    width: 90px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #606266;
+
+  }
+  .pop_border{
+    position: relative;
+  }
+  .pop_border:before{
+    content: '';
+    position: absolute;
+    background-color: #EBEEF5;
+    width: 1px;
+    right: 10px;
+    height: 14px;
+  }
+  .te_code_enum {
+    padding: 5px 0;
+    width: 100%;
+    max-height: 247px;
+
+    .te_code_enum_item {
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background-color: #fff;
+      padding: 10px 20px;
+
+      &:hover {
+        background-color: #f7f8fb;
+      }
+    }
+  }
+
+  .popover_mask {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 100;
+  }
+}
+.border_cell_name{
+  background-color: rgba(242, 243, 245, 0.5) !important;
+  box-shadow: inset 0px -1px 0px #EBEEF5;
+  color: #333333;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  height: 54px;
+}
+.cellName{
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  color: #333333;
+  height: 54px;
+}
+.el-message{
+  z-index: 10000 !important;
+}
+.el-image-viewer__wrapper {
+  z-index: 10001 !important;
+}
