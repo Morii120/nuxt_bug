@@ -1,35 +1,17 @@
 <template>
   <div id="app">
     <div :class="{'header-border':hasBorder, 'app-header': true}">
-      <index-header />
     </div>
-    <div class="app-main" :class="[footerLayoutEunm[footerType], hasBorder ? 'has_border' : '']">
+    <div class="app-main" :class="[footerLayoutEunm[1], hasBorder ? 'has_border' : '']">
       <slot />
     </div>
     <div class="app-footer">
-      <index-footer />
     </div>
-    <preview-resource
-      v-if="ctrl.show"
-      :id="ctrl.id"
-      :model-value="ctrl.show"
-      @close="ctrl.show = false"
-    />
-    <back-top />
-    <suspense-box />
   </div>
 </template>
 
 <script setup>
-import { useLayoutStore } from '@/stores/layout'
-import cookie from '@/utils/cookies'
-import { useUserStore } from '../stores/user'
-import bus from '@/utils/bus'
-const { getShopInfo, getUserView } = useUserStore()
-getShopInfo()
 
-const layoutStore = useLayoutStore()
-const footerType = computed(() => layoutStore.footerType)
 const footerLayoutEunm = ref({
   1: 'footer-style-one',
   2: 'footer-style-two',
@@ -42,10 +24,8 @@ const hasBorder = computed(() => {
   return !unBorderList.includes(route.path)
 })
 
-const cookieData = cookie.getShop()
 useHead({
   link: [
-    { rel: 'icon', type: 'image/x-icon', href: cookieData.shopIcon },
     { rel: 'stylesheet', type: 'text/css', href: '//live-cdn.baijiayun.com/www-video-jssdk/dep/videojs/0.0.5/dist/videojs.css' }
   ],
   script: [
@@ -56,44 +36,9 @@ useHead({
   ]
 })
 
-const ctrl = reactive({
-  show: false,
-  id: ''
-})
 
-onMounted(() => {
-  getUserView()
-  bus.on('preview-resource', (resourceId) => {
-    ctrl.id = resourceId
-    ctrl.show = true
-  })
-  document.addEventListener('click', (e) => {
-    if (e && e.target) {
-      if (e.target.parentNode && e.target.parentNode.className === 'video_img') {
-        ctrl.id = e.target.parentNode.parentNode.dataset.id
-        ctrl.show = true
-        return
-      }
-      if (e.target.className === 'video_img') {
-        ctrl.id = e.target.parentNode.dataset.id
-        ctrl.show = true
-        return
-      }
-      if (e.target.className === 'audio_img') {
-        ctrl.id = e.target.parentNode.dataset.id
-        ctrl.show = true
-        return
-      }
-      if (e.target.parentNode && e.target.parentNode.className === 'audio_img') {
-        ctrl.id = e.target.parentNode.parentNode.dataset.id
-        ctrl.show = true
-      }
-    }
-  })
-})
 </script>
 <style lang="scss" scoped>
-@import url('@/assets/font/iconfont.css');
 #app {
   position: relative;
   background-color: #f6f8fb;
